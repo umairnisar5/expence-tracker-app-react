@@ -1,13 +1,10 @@
-import React from 'react'; 
+import React, { useContext } from 'react'; 
+import {TransactionContext} from "./transContext";
+
 
 function Child() {
-
-    let transaction = [
-        {amount: 500, desc: "cash"},
-        {amount: -200, desc: "book"},
-        {amount: -100, desc: "camera"},
-
-    ]
+let {transaction} = useContext(TransactionContext);
+    
   return (
     <div className="container">
     <h1 className="text_cenetr">Expence Tracker</h1>
@@ -21,23 +18,13 @@ function Child() {
     <hr/>
 
     <ul className="transaction-list">
-<li>
-    <span>Cash</span>
-    <span>+500</span>
+    {transaction.map((transObj , ind)=> {
+        return(<li>
+    <span>{transObj.desc}</span>
+    <span>{transObj.amount}</span>
 
-</li>
-
-<li>
-    <span>Cash</span>
-    <span>+500</span>
-
-</li>
-
-<li>
-    <span>Cash</span>
-    <span>+500</span>
-
-</li>
+</li>);
+    })}
     </ul>
     <h3>Add new transaction</h3>
     <hr/>
