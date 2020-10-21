@@ -1,10 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { TransactionContext } from './transContext';
 
 
 function Child() {
-  let { transactions } = useContext(TransactionContext);
+  let { transactions, addTransaction } = useContext(TransactionContext);
+  let [newDesc,  setDesc] = useState("");
+  let [newAmount,  setAmount] = useState("0");
 
+ const handleAddition = (event)=> {
+  event.preventDefault();
+  addTransaction({
+    amount : newAmount,
+    desc :  newDesc
+  })
+ }
 
   return (
     <div className="container">
@@ -15,7 +24,7 @@ function Child() {
         <h3>Income <br /> $260</h3>
         <h3>Expence <br /> $200</h3>
       </div>
-      <h3>History</h3>
+      <h3>History</h3>  
       <hr />
 
       <ul className="transaction-list">
@@ -30,12 +39,12 @@ function Child() {
       <h3>Add new transaction</h3>
       <hr />
 
-      <form className="transaction-form">
+      <form className="transaction-form" onSubmit={handleAddition} >
         <label>Enetr Description <br />
-          <input type="text" required />
+          <input type="text" onChange={(ev)=>setDesc(ev.target.value)} required  />
         </label><br />
         <label>Enter Amount <br />
-          <input type="number" required />
+          <input type="number" onChange={(ev)=>setAmount(ev.target.value)} required />
         </label><br />
 
         <input type="submit" value="Add Transaction" />
