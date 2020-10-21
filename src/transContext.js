@@ -3,8 +3,8 @@ import TransactionReducer from './transReducer';
 
 const initialTransactions = [
     { amount: 500, desc: "cash" },
-    { amount: -200, desc: "book" },
-    { amount: -400, desc: "camera" }
+    { amount: 20, desc: "book" },
+    { amount: 100, desc: "camera" }
 
 ]
 
