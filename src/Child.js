@@ -9,10 +9,17 @@ function Child() {
 
  const handleAddition = (event)=> {
   event.preventDefault();
+  if(Number(newAmount) === 0){
+  alert ("please enter correct value")
+  return false ;
+  }
   addTransaction({
     amount : Number(newAmount),
     desc :  newDesc
-  })
+  });
+  setDesc ("");
+  setAmount (0)
+
  }
  
  const getIncome =() =>{
@@ -35,11 +42,11 @@ return income;
   return (
     <div className="container">
       <h1 className="text_cenetr">Expence Tracker</h1>
-      <h3>your Balnce <br /> {getIncome()  + getExpense()} </h3>
+      <h3>your Balnce <br /> ${getIncome()  + getExpense()} </h3>
 
       <div className="expence_container">
-        <h3>Income <br /> {getIncome()}</h3>
-        <h3>Expence <br /> {getExpense()} </h3>
+        <h3>Income <br /> ${getIncome()}</h3>
+        <h3>Expence <br /> ${getExpense()} </h3>
       </div>
       <h3>History</h3>  
       <hr />
@@ -48,7 +55,7 @@ return income;
         {transactions.map((transObj, ind) => {
           return (<li key={ind}>
             <span>{transObj.desc}</span>
-            <span>{transObj.amount}</span>
+            <span>${transObj.amount}</span>
 
           </li>);
         })}
@@ -58,10 +65,16 @@ return income;
 
       <form className="transaction-form" onSubmit={handleAddition} >
         <label>Enetr Description <br />
-          <input type="text" onChange={(ev)=>setDesc(ev.target.value)} required  />
+          <input type="text" 
+          value={newDesc}
+          placeholder="Descripton"
+          onChange={(ev)=>setDesc(ev.target.value)} required  />
         </label><br />
         <label>Enter Amount <br />
-          <input type="number" onChange={(ev)=>setAmount(ev.target.value)} required />
+          <input type="number"
+          value={newAmount}
+          placeholder="Amount"
+           onChange={(ev)=>setAmount(ev.target.value)} required />
         </label><br />
 
         <input type="submit" value="Add Transaction" />

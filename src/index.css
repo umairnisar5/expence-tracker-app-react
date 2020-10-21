@@ -32,8 +32,14 @@ padding: 5px 0 ;
   display: flex;
   justify-content: space-between;
   box-shadow: 0 0 10px gray;
-padding: 5px 5px;
+padding: 5px 15px;
 margin: 5px 0;
 background-color: whitesmoke;
+border-radius: 5px ;
 
+}
+.transaction-form input {
+  width: 100%;
+margin: 10px 0;
+padding: 5px 5px ;
 }
